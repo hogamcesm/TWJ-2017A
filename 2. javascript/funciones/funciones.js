@@ -40,7 +40,7 @@ console.log( result ); //undefined
 console.log( "hola: ",hola );
 
 function hazAlgo( algo ) {
-           algo()
+           algo();
 }
 
 console.log(hazAlgo(function () {
@@ -48,7 +48,16 @@ console.log(hazAlgo(function () {
 }));
 
 
+function transformarNumero( numero, transformacion ) {
+    transformacion( numero );
+}
 
+transformarNumero(5, function ( numero ) {
+    return numero*2;
+});
+transformarNumero(10, function ( numero ) {
+    return numero/2;
+});
 
 
 
