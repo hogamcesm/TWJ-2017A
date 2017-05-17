@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'twj-raiz',
-  template: "<p>Hola Mundo</p>"
+  templateUrl: './app.component.html'
   ,
   styleUrls: ['./app.component.css']
 })
@@ -11,6 +11,8 @@ export class AppComponent {
     nombre: "Carlos",
     apellido: "Sampedro"
   };
+
+  url:string = "https://angular.io";
   constructor(){
     console.log("Constructor");
     this.holaMundo();
