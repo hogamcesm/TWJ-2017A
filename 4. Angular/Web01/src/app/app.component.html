@@ -1,0 +1,46 @@
+<h1>
+  Mi primera aplicacion en angular
+</h1>
+
+<p>Gracias por visitarnos</p>
+
+<h2>Desarrollado por {{usuario.nombre}} {{12+4}}!</h2>
+
+<a [href]="url">
+  <img [src]="img" alt="">
+</a>
+
+
+<h2>Property Binding</h2>
+
+<p id="bind"></p>
+<h3>Primera forma con llaves dobles</h3>
+<p>{{parrafo}}</p>
+<h3>Segunda forma []</h3>
+<p [innerText]="parrafo"></p>
+
+<input type="text" [value]="parrafo">
+<p [style.color]="'green'"
+
+   [style.background-color]="background"
+   [innerText]="parrafo"></p>
+
+<img [src]="img2"
+     [style.width]="width"
+     [style.height]="height">
+
+<app-estilo></app-estilo>
+<app-estilo></app-estilo>
+<app-estilo></app-estilo>
+<app-estilo></app-estilo>
+
+
+<p>Mantiene sincronizadas las variables del componente en el html</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
