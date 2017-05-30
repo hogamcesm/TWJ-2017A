@@ -12,15 +12,15 @@ export class InicioComponent implements OnInit {
   arregloUsuarios = [{
     nombre: "Carlos",
     apellido: "Sampedro",
-    conectado: "true"
+    conectado: true
   }, {
     nombre: "Mashi",
     apellido: "Correa",
-    conectado: "true"
+    conectado: false
   }, {
     nombre: "Abdala",
     apellido: "Bucaram",
-    conectado: "true"
+    conectado: true
   }];
 
   constructor() {
