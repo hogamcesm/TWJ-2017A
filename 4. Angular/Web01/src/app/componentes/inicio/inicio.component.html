@@ -3,27 +3,51 @@
   <h1>Bienvenido</h1>
  <h2>Usuarios</h2>
   <div class="row">
-    <div  *ngFor="let usuario of arregloUsuarios" class="col-sm-4">
+    <div  *ngFor="let usuario of arregloUsuarios" >
+      <div class="col-sm-4 " *ngIf="usuario.conectado==true">
+        <div class="card" style="width: 20rem;">
+          <div class="card-block" >
+            <h4 class="card-title" >{{ usuario.nombre }} - {{ usuario.conectado }}</h4>
+            <p class="card-text">{{ usuario.nombre }} + {{ usuario.apellido }}</p>
+            <a href="#" class="btn btn-primary btn-block">Ir a perfiles</a>
+          </div>
+      </div>
 
 
-      <div class="card" style="width: 20rem;">
-        <div class="card-block">
-          <h4 class="card-title">{{usuario.nombre}}</h4>
-          <p class="card-text">{{usuario.nombre}}  {{usuario.apellido}}</p>
-          <a href="#" class="btn btn-primary btn-block">Ir a perfiles</a>
-        </div>
       </div>
     </div>
   </div>
 
+  <hr>
+  <h2>Planetas de Star Wars</h2>
+  <br>
+  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Planetas</button>
 
-  <div >
+
+  <div class="row">
+    <div>
+      <h1></h1>
+      <ol>
+        <li *ngFor="let planeta of planetas">{{ planeta.name }}</li>
+      </ol>
+    </div>
+  </div>
+<!--
+  crear una interface
+-->
+  <!--<div >
 <ul>
-  <li *ngFor="let usuario of arregloUsuarios"> {{usuario.nombre}}</li>
+  <li *ngFor="let usuario of arregloUsuarios"> {{ usuario.nombre }}</li>
 </ul>
 
   </div>
+  -->
 
+  <!--<p *ngIf="undefined">undefined</p>
+  <p *ngIf="null">null</p>
+  <p *ngIf="0">CERO</p>
+  <p *ngIf="nombre">NOMBRE</p>
+-->
 </div>
 
 
