@@ -12,7 +12,9 @@ export class InicioComponent implements OnInit {
 
   planetas: PlanetasStarWars[] = [];
 
-  /* command + alt, seleccionar todo el texto, command + alt + l*/
+
+
+/* command + alt, seleccionar todo el texto, command + alt + l*/
   arregloUsuarios = [{
     nombre: "Carlos",
     apellido: "Sampedro",
@@ -40,6 +42,7 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
     //el componente esta listo
   }
+
   cargarPlanetas(){
     this._http
       .get( "http://swapi.co/api/planets" )
@@ -86,9 +89,20 @@ console.log("error", error)
   }
 }
 
-interface PlanetasStarWars{
-    name: string,
-    rotation_period: string,
-    orbital_period: string,
 
-}
+
+interface PlanetasStarWars{
+  name: string,
+  rotation_period: string,
+  orbital_period: string,
+  diameter: string,
+  climate: string,
+  gravity: string,
+  terrain: string,
+  surface_water: string,
+  population: string,
+  residents:string[],
+  films: string[]
+
+};
+

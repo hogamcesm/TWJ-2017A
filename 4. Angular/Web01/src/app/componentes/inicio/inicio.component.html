@@ -19,19 +19,30 @@
   </div>
 
   <hr>
-  <h2>Planetas de Star Wars</h2>
+  <h2 style="text-align: center;">Planetas de Star Wars</h2>
   <br>
-  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Planetas</button>
+  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Mostrar</button>
 
 
-  <div class="row">
-    <div>
-      <h1></h1>
-      <ol>
-        <li *ngFor="let planeta of planetas">{{ planeta.name }}</li>
-      </ol>
+  <div  class="row">
+    <div  *ngFor="let planeta of planetas">
+      <div class="col-md-6 ">
+        <div  class="card" style="width: 30rem;">
+          <div  class="card-block" >
+            <h4 style="text-align: center;" class="card-title" >{{ planeta.name }}</h4>
+
+            <p><strong>Clima: </strong>{{ planeta.climate }}</p>
+            <p><strong>Poblacion: </strong> {{ planeta.population }}</p>
+            <p><strong>Gravedad: </strong>{{ planeta.gravity }}</p>
+            <p><strong>Superficie del agua: </strong>{{ planeta.surface_water }}</p>
+            <p><strong>Terreno: </strong>{{planeta.terrain}}</p>
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
 <!--
   crear una interface
 -->
