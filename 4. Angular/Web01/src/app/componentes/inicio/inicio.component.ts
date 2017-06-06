@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {PlanetasStarWars} from '../../Interfaces/PlanetaStarWars';
 
 @Component({
   selector: 'app-inicio',
@@ -45,30 +46,45 @@ export class InicioComponent implements OnInit {
 
   cargarPlanetas(){
     this._http
-      .get( "http://swapi.co/api/planets" )
-      //.map( response=>response.json() )
+      .get("http://swapi.co/api/planets")
+      //.map(response=>response.json()
       .subscribe(
         (response)=>{
-            console.log("Response", response);
-            console.log( response.json() );
+          console.log("Response:",response);
 
-            let respuesta = response.json();
+          console.log(response.json());
 
-            console.log( "respuesta",respuesta.next );
+          let respuesta = response.json();
+
+          console.log(respuesta.next);
 
           this.planetas = respuesta.results;
 
 
+          this.planetas = this.planetas.map(
+            (planeta)=>{
+              planeta.imagenURL = "/assets/imagenes/"+planeta.name+".jpg";
+              return planeta
+            }
+          );
+          //Arreglo
+          // mutarlo, mismo arreglo con un nuevo atributo imagen
+
+          //.map
+
 
         },
         (error)=>{
-console.log("error", error)
+          console.log("Error:",error);
         },
         ()=>{
-          console.log("Finally")
+          console.log("Finally");
         }
+
       )
   }
+
+
   cambiarNombre(): void {
 
     console.log("Entro");
@@ -91,18 +107,5 @@ console.log("error", error)
 
 
 
-interface PlanetasStarWars{
-  name: string,
-  rotation_period: string,
-  orbital_period: string,
-  diameter: string,
-  climate: string,
-  gravity: string,
-  terrain: string,
-  surface_water: string,
-  population: string,
-  residents:string[],
-  films: string[]
 
-};
 

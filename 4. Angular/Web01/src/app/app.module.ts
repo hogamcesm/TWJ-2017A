@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { HttpModule } from "@angular/http";
 import { EstiloComponent } from './estilo/estilo.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { PlanetaStarWarsComponent } from './componentes/planeta-star-wars/planeta-star-wars.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EstiloComponent,
-    InicioComponent
+    InicioComponent,
+    PlanetaStarWarsComponent
   ],
   imports: [
     BrowserModule,

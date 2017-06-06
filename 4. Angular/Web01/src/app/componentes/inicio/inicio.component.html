@@ -1,4 +1,18 @@
+<div class="container">
 
+  <h1>Bienvenidos</h1>
+
+  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Cargar Planetas</button>
+
+  <div class="row">
+    <div class="col-md-4"
+         *ngFor="let planeta of planetas;let i = index;">
+
+      <app-planeta-star-wars [planeta]="planeta"></app-planeta-star-wars>
+
+    </div>
+  </div>
+<!--
 <div class="container">
   <h1>Bienvenido</h1>
  <h2>Usuarios</h2>
@@ -18,31 +32,34 @@
     </div>
   </div>
 
-  <hr>
-  <h2 style="text-align: center;">Planetas de Star Wars</h2>
-  <br>
-  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Mostrar</button>
+    <hr>
+    <h2 style="text-align: center;">Planetas de Star Wars</h2>
+    <br>
+    <button class="btn btn-outline-success" (click)="cargarPlanetas()">Mostrar</button>
 
 
-  <div  class="row">
-    <div  *ngFor="let planeta of planetas">
-      <div class="col-md-6 ">
-        <div  class="card" style="width: 30rem;">
-          <div  class="card-block" >
-            <h4 style="text-align: center;" class="card-title" >{{ planeta.name }}</h4>
+    <div  class="row">
+      <div  *ngFor="let planeta of planetas">
+        <div class="col-md-6 ">
+          <div  class="card" style="width: 30rem;">
+            <div  class="card-block" >
+              <h4 style="text-align: center;" class="card-title" >{{ planeta.name }}</h4>
 
-            <p><strong>Clima: </strong>{{ planeta.climate }}</p>
-            <p><strong>Poblacion: </strong> {{ planeta.population }}</p>
-            <p><strong>Gravedad: </strong>{{ planeta.gravity }}</p>
-            <p><strong>Superficie del agua: </strong>{{ planeta.surface_water }}</p>
-            <p><strong>Terreno: </strong>{{planeta.terrain}}</p>
-
+              <p><strong>Clima: </strong>{{ planeta.climate }}</p>
+              <p><strong>Poblacion: </strong> {{ planeta.population }}</p>
+              <p><strong>Gravedad: </strong>{{ planeta.gravity }}</p>
+              <p><strong>Superficie del agua: </strong>{{ planeta.surface_water }}</p>
+              <p><strong>Terreno: </strong>{{ planeta.terrain }}</p>
+              <img style="height: 70%; width: 60%;" [src]="planeta.imagenURL" alt="">
+              <ul>
+                <li *ngFor="let resident of planeta.residents; let i = index">{{i}} - {{resident}}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
+  -->
 <!--
   crear una interface
 -->
@@ -58,9 +75,9 @@
   <p *ngIf="null">null</p>
   <p *ngIf="0">CERO</p>
   <p *ngIf="nombre">NOMBRE</p>
--->
-</div>
 
+</div>
+-->
 
 
 
