@@ -23,6 +23,12 @@
         <button class="btn btn-outline-success" (click)="crearUsuario()">Crear usuario</button>
     </div>
   </div>
+
+<h3>Usuarios:</h3>
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let usuario of usuarios">{{usuario.nombre}}</div>
+
+  </div>
   <hr>
 
   <h2>Planetas</h2>

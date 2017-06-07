@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {PlanetasStarWars} from '../../Interfaces/PlanetaStarWars';
+import {UsuarioClass} from '../../Classes/UsuarioClass';
 
 @Component({
   selector: 'app-inicio',
@@ -11,6 +12,7 @@ import {PlanetasStarWars} from '../../Interfaces/PlanetaStarWars';
 export class InicioComponent implements OnInit {
   nombre: string = "Carlos";
 
+  usuarios: UsuarioClass[]=[];
 
   nuevoUsuario: UsuarioClass = new UsuarioClass("");
 
@@ -49,6 +51,18 @@ export class InicioComponent implements OnInit {
 
 
     console.log( "Nuevo usuario", this.nuevoUsuario );
+
+    this._http.get("http://localhost:1337/Usuario")
+      .subscribe(
+        respuesta=>{
+          let rjson:UsuarioClass[] = respuesta.json();
+          this.usuarios = rjson;
+          console.log("Usuarios", this.usuarios);
+        },
+        error=>{
+          console.log("Error", error)
+    }
+      )
   }
 
   cargarPlanetas(){
@@ -112,11 +126,13 @@ export class InicioComponent implements OnInit {
   }
 
   crearUsuario(){
-    console.log("entro a crear usuario");
-    let usuario:UsuarioClass = {
+    console.log("Entro a crear Usuario");
+
+  /*  let usuario = {
       nombre:this.nuevoUsuario.nombre
     };
-    this._http.post("http://localhost:1337/Usuario",usuario)
+    */
+    this._http.post("http://localhost:1337/Usuario",this.nuevoUsuario)
       .subscribe(
         respuesta=>{
           let respuestaJSON = respuesta.json();
@@ -127,13 +143,8 @@ export class InicioComponent implements OnInit {
     }
       )
   }
-}
+//ELIMAR USUARIO, AGREGAR O ELIMINAR EN EL ARREGLO
 
-class UsuarioClass {
-  nombre: string;
-  constructor( nombre?:string ){
-    this.nombre = nombre;
-  }
 
 
 }
