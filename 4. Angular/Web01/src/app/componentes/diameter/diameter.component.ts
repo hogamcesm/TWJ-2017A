@@ -7,7 +7,7 @@ import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
   styleUrls: ['./diameter.component.css']
 })
 export class DiameterComponent implements OnInit {
-  @Input() planeta:PlanetasStarWars;
+  @Input() diameter:string;
   constructor() { }
 
   ngOnInit() {

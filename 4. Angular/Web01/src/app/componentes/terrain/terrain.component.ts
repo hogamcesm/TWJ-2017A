@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
 
 @Component({
   selector: 'app-terrain',
@@ -7,7 +6,7 @@ import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
   styleUrls: ['./terrain.component.css']
 })
 export class TerrainComponent implements OnInit {
-  @Input() planeta:PlanetasStarWars;
+  @Input() terr:string;
   constructor() { }
 
   ngOnInit() {

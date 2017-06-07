@@ -1,5 +1,5 @@
 import { Component, Input,  OnInit } from '@angular/core';
-import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
+
 
 @Component({
   selector: 'app-orbital-period',
@@ -7,12 +7,12 @@ import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
   styleUrls: ['./orbital-period.component.css']
 })
 export class OrbitalPeriodComponent implements OnInit {
-  @Input() planeta:PlanetasStarWars;
-  constructor() { console.log("Orbital period:", this.planeta ) }
+  @Input() orbitalPeriod:string;
+  constructor() {  }
 
   ngOnInit() {
 
-    console.log("Orbital period:", this.planeta )
+
 
   }
 

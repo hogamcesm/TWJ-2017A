@@ -11,6 +11,10 @@ import {PlanetasStarWars} from '../../Interfaces/PlanetaStarWars';
 export class InicioComponent implements OnInit {
   nombre: string = "Carlos";
 
+
+  nuevoUsuario: UsuarioClass = new UsuarioClass("");
+
+
   planetas: PlanetasStarWars[] = [];
 
 
@@ -42,6 +46,9 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     //el componente esta listo
+
+
+    console.log( "Nuevo usuario", this.nuevoUsuario );
   }
 
   cargarPlanetas(){
@@ -103,9 +110,32 @@ export class InicioComponent implements OnInit {
     this.nombre = nombreEtiqueta.value;
 
   }
+
+  crearUsuario(){
+    console.log("entro a crear usuario");
+    let usuario:UsuarioClass = {
+      nombre:this.nuevoUsuario.nombre
+    };
+    this._http.post("http://localhost:1337/Usuario",usuario)
+      .subscribe(
+        respuesta=>{
+          let respuestaJSON = respuesta.json();
+          console.log("Resouesta JSoN", respuestaJSON);
+    },
+    error=>{
+          console.log("Error",error);
+    }
+      )
+  }
 }
 
+class UsuarioClass {
+  nombre: string;
+  constructor( nombre?:string ){
+    this.nombre = nombre;
+  }
 
 
+}
 
 

@@ -7,7 +7,7 @@ import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
   styleUrls: ['./gravity.component.css']
 })
 export class GravityComponent implements OnInit {
-  @Input() planeta:PlanetasStarWars;
+  @Input() gravity:string;
   constructor() { }
 
   ngOnInit() {

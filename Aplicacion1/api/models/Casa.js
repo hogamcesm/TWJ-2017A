@@ -7,7 +7,7 @@
 
 module.exports = {
 
-  connection: 'coneccionMySqlDocker',
+  connection: 'coneccionMySqlDocker',//localDiskDb
   attributes: {
     nombre:{
       type: 'string'
