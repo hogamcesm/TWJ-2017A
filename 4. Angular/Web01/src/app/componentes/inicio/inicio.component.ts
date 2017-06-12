@@ -8,13 +8,16 @@ import {UsuarioClass} from '../../Classes/UsuarioClass';
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
+
 })
 export class InicioComponent implements OnInit {
-  nombre: string = "Carlos";
 
-  usuarios: UsuarioClass[]=[];
 
-  nuevoUsuario: UsuarioClass = new UsuarioClass("");
+  nombre = 'Carlos';
+
+  usuarios: UsuarioClass[]= [];
+
+  nuevoUsuario: UsuarioClass = new UsuarioClass();
 
 
   planetas: PlanetasStarWars[] = [];
@@ -23,20 +26,20 @@ export class InicioComponent implements OnInit {
 
 /* command + alt, seleccionar todo el texto, command + alt + l*/
   arregloUsuarios = [{
-    nombre: "Carlos",
-    apellido: "Sampedro",
+    nombre: 'Carlos',
+    apellido: 'Sampedro',
     conectado: true
   }, {
-    nombre: "Mashi",
-    apellido: "Correa",
+    nombre: 'Mashi',
+    apellido: 'Correa',
     conectado: true
   }, {
-    nombre: "Abdala",
-    apellido: "Bucaram",
+    nombre: 'Abdala',
+    apellido: 'Bucaram',
     conectado: false
   }, {
-    nombre: "Jose",
-    apellido: "Flores",
+    nombre: 'Jose',
+    apellido: 'Flores',
     conectado: true
   }];
 
@@ -50,32 +53,35 @@ export class InicioComponent implements OnInit {
     //el componente esta listo
 
 
-    console.log( "Nuevo usuario", this.nuevoUsuario );
+    console.log( 'Nuevo usuario', this.nuevoUsuario );
 
-    this._http.get("http://localhost:1337/Usuario")
+    this._http.get('http://localhost:1337/Usuario')
       .subscribe(
-        respuesta=>{
-          let rjson:UsuarioClass[] = respuesta.json();
+        respuesta => {
+          const rjson: UsuarioClass[] = respuesta.json();
           this.usuarios = rjson;
-          console.log("Usuarios", this.usuarios);
+          console.log('Usuarios', this.usuarios);
         },
-        error=>{
-          console.log("Error", error)
+        error => {
+          console.log('Error', error);
     }
-      )
+      );
   }
+
+
+
 
   cargarPlanetas(){
     this._http
-      .get("http://swapi.co/api/planets")
+      .get('http://swapi.co/api/planets')
       //.map(response=>response.json()
       .subscribe(
-        (response)=>{
-          console.log("Response:",response);
+        (response) => {
+          console.log('Response:', response);
 
           console.log(response.json());
 
-          let respuesta = response.json();
+          const respuesta = response.json();
 
           console.log(respuesta.next);
 
@@ -83,9 +89,9 @@ export class InicioComponent implements OnInit {
 
 
           this.planetas = this.planetas.map(
-            (planeta)=>{
-              planeta.imagenURL = "/assets/imagenes/"+planeta.name+".jpg";
-              return planeta
+            (planeta) => {
+              planeta.imagenURL = '/assets/imagenes/' + planeta.name + '.jpg';
+              return planeta;
             }
           );
           //Arreglo
@@ -95,25 +101,25 @@ export class InicioComponent implements OnInit {
 
 
         },
-        (error)=>{
-          console.log("Error:",error);
+        (error) => {
+          console.log('Error:', error);
         },
-        ()=>{
-          console.log("Finally");
+        () => {
+          console.log('Finally');
         }
 
-      )
+      );
   }
 
 
   cambiarNombre(): void {
 
-    console.log("Entro");
-    this.nombre = "Rafico a Lenin";
+    console.log('Entro');
+    this.nombre = 'Rafico a Lenin';
   }
 
   cambiarOtroNombre() {
-    this.nombre = "Lenin a Rafico";
+    this.nombre = 'Lenin a Rafico';
   }
 
   cambiarNombreInput(nombreEtiqueta) {
@@ -125,25 +131,61 @@ export class InicioComponent implements OnInit {
 
   }
 
+
+  eliminarUsuario(usuario: UsuarioClass, indice: number){
+
+   // console.log('Indice:', this.usuarios.indexOf(usuario));
+
+    //console.log('Indice con index: ', usuario.id);
+
+
+
+    this._http.delete(`http://localhost:1337/Usuario/${usuario.id}`)
+      .subscribe(
+        respuesta => {
+          console.log('Indice con index: ', usuario.id);
+
+        },
+        error => {
+          console.log('Error', error);
+        }
+      );
+
+
+
+
+
+  }
+
+
+
   crearUsuario(){
-    console.log("Entro a crear Usuario");
+    console.log('Entro a crear Usuario');
 
   /*  let usuario = {
       nombre:this.nuevoUsuario.nombre
     };
     */
-    this._http.post("http://localhost:1337/Usuario",this.nuevoUsuario)
+
+
+    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario)
       .subscribe(
-        respuesta=>{
-          let respuestaJSON = respuesta.json();
-          console.log("Resouesta JSoN", respuestaJSON);
+        respuesta => {
+          // const respuestaJSON = respuesta.json();
+          // console.log('Resouesta JSoN', respuestaJSON);
+          this.usuarios.push(this.nuevoUsuario);
+
+
     },
-    error=>{
-          console.log("Error",error);
+    error => {
+          console.log('Error', error);
     }
-      )
+      );
+
+
   }
 //ELIMAR USUARIO, AGREGAR O ELIMINAR EN EL ARREGLO
+
 
 
 
