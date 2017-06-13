@@ -13,6 +13,7 @@ import {UsuarioClass} from '../../Classes/UsuarioClass';
 export class InicioComponent implements OnInit {
 
 
+
   nombre = 'Carlos';
 
   usuarios: UsuarioClass[]= [];
@@ -66,6 +67,7 @@ export class InicioComponent implements OnInit {
           console.log('Error', error);
     }
       );
+
   }
 
 
@@ -159,11 +161,6 @@ export class InicioComponent implements OnInit {
           console.log('Error', error);
         }
       );
-
-
-
-
-
   }
 
 
@@ -177,21 +174,20 @@ export class InicioComponent implements OnInit {
     */
 
 
-    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario.id)
+    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario)
       .subscribe(
         respuesta => {
           // const respuestaJSON = respuesta.json();
           // console.log('Resouesta JSoN', respuestaJSON);
           //this.usuarios.push(this.nuevoUsuario);
 
-         /* console.log("jsajkas");
-          this.usuarios.push(respuesta.json());
-*/
+          //this.usuarios.splice(respuesta.json());
+          let usuarioAgregado;
+          usuarioAgregado = respuesta.json();
 
-          console.log("No hubo Errores");
-          console.log(respuesta);
-          this.usuarios.push(respuesta.json());
+          this.usuarios.push(usuarioAgregado);
           this.nuevoUsuario = {};
+
 
     },
     error => {
@@ -199,8 +195,5 @@ export class InicioComponent implements OnInit {
     }
       );
 
-
   }
-//ELIMAR USUARIO, AGREGAR O ELIMINAR EN EL ARREGLO
-
 }
