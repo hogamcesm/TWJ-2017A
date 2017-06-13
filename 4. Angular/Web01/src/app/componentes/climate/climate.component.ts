@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {PlanetasStarWars} from "../../Interfaces/PlanetaStarWars";
+
 
 @Component({
   selector: 'app-climate',

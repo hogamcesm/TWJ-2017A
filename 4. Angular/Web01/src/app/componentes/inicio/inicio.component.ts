@@ -132,11 +132,11 @@ export class InicioComponent implements OnInit {
   }
 
 
-  eliminarUsuario(usuario: UsuarioClass, indice: number){
+  eliminarUsuario(usuario: UsuarioClass, indice: number) {
 
    // console.log('Indice:', this.usuarios.indexOf(usuario));
 
-    //console.log('Indice con index: ', usuario.id);
+    console.log('Indice con index: ', usuario.id);
 
 
 
@@ -144,6 +144,15 @@ export class InicioComponent implements OnInit {
       .subscribe(
         respuesta => {
           console.log('Indice con index: ', usuario.id);
+
+        //  const rjson: UsuarioClass[] = respuesta.json();
+        //  this.usuarios = rjson.slice(usuario.id);
+         // this.usuarios = this.usuarios.slice(usuario.id);
+
+          let usuarioBorrado;
+          usuarioBorrado = respuesta.json();
+          this.usuarios = this.usuarios.filter(value => usuarioBorrado.id != value.id);
+
 
         },
         error => {
@@ -168,13 +177,21 @@ export class InicioComponent implements OnInit {
     */
 
 
-    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario)
+    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario.id)
       .subscribe(
         respuesta => {
           // const respuestaJSON = respuesta.json();
           // console.log('Resouesta JSoN', respuestaJSON);
-          this.usuarios.push(this.nuevoUsuario);
+          //this.usuarios.push(this.nuevoUsuario);
 
+         /* console.log("jsajkas");
+          this.usuarios.push(respuesta.json());
+*/
+
+          console.log("No hubo Errores");
+          console.log(respuesta);
+          this.usuarios.push(respuesta.json());
+          this.nuevoUsuario = {};
 
     },
     error => {
@@ -186,9 +203,4 @@ export class InicioComponent implements OnInit {
   }
 //ELIMAR USUARIO, AGREGAR O ELIMINAR EN EL ARREGLO
 
-
-
-
 }
-
-
