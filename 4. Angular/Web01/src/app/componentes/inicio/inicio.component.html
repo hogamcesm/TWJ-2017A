@@ -35,7 +35,9 @@
 
     <div class="col-sm-3"  *ngFor="let usuario of usuarios;let indice = index;">
 
-      <app-usuario [usuario]="usuario"></app-usuario>
+      <app-usuario [usuario]="usuario"
+      (usuarioBorrado)="elimimarUsuario($event)"
+      ></app-usuario>
 
 
 

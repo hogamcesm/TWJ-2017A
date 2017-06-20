@@ -177,7 +177,10 @@ export class InicioComponent implements OnInit {
 
   }
 
-
+  eliminarUsuario(usuario:UsuarioClass){
+    let indice = this.usuarios.indexOf(usuario);
+    this.usuarios.slice(1, usuario.id);
+  }
 
 
 }

@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {UsuarioClass} from '../../Classes/UsuarioClass';
 import {Http} from '@angular/http';
+import EventEmitter = NodeJS.EventEmitter;
 
 @Component({
   selector: 'app-usuario',
@@ -9,6 +10,7 @@ import {Http} from '@angular/http';
 })
 export class UsuarioComponent implements OnInit {
 @Input() usuario: UsuarioClass;
+@Output() usuarioBorrado = new EventEmitter();
   constructor(private _http: Http) { }
 
   ngOnInit() {
@@ -38,17 +40,17 @@ export class UsuarioComponent implements OnInit {
       }
     )
   }
-  eliminarUsuario(usuario: UsuarioClass, indice: number) {
+eliminarUsuario(usuario: UsuarioClass, indice: number) {
 
     // console.log('Indice:', this.usuarios.indexOf(usuario));
 
     console.log('Indice con index: ', usuario.id);
 
-
-
     this._http.delete(`http://localhost:1337/Usuario/${usuario.id}`)
       .subscribe(
         respuesta => {
+
+          this.usuarioBorrado.emit({id:usuario.id});
           console.log('Indice con index: ', usuario.id);
 
           //  const rjson: UsuarioClass[] = respuesta.json();
@@ -66,5 +68,8 @@ export class UsuarioComponent implements OnInit {
         }
       );
   }
+
+
+
 
 }
