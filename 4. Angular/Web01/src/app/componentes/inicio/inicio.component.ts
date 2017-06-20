@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
+
+
 import {PlanetasStarWars} from '../../Interfaces/PlanetaStarWars';
 import {UsuarioClass} from '../../Classes/UsuarioClass';
 
@@ -60,7 +62,13 @@ export class InicioComponent implements OnInit {
       .subscribe(
         respuesta => {
           const rjson: UsuarioClass[] = respuesta.json();
-          this.usuarios = rjson;
+          this.usuarios = rjson.map(
+            (usuario: UsuarioClass)=>{
+              //cambiar el usuario
+              usuario.editar = false;
+              return usuario;
+            }
+          );
           console.log('Usuarios', this.usuarios);
         },
         error => {
@@ -134,34 +142,6 @@ export class InicioComponent implements OnInit {
   }
 
 
-  eliminarUsuario(usuario: UsuarioClass, indice: number) {
-
-   // console.log('Indice:', this.usuarios.indexOf(usuario));
-
-    console.log('Indice con index: ', usuario.id);
-
-
-
-    this._http.delete(`http://localhost:1337/Usuario/${usuario.id}`)
-      .subscribe(
-        respuesta => {
-          console.log('Indice con index: ', usuario.id);
-
-        //  const rjson: UsuarioClass[] = respuesta.json();
-        //  this.usuarios = rjson.slice(usuario.id);
-         // this.usuarios = this.usuarios.slice(usuario.id);
-
-          let usuarioBorrado;
-          usuarioBorrado = respuesta.json();
-          this.usuarios = this.usuarios.filter(value => usuarioBorrado.id != value.id);
-
-
-        },
-        error => {
-          console.log('Error', error);
-        }
-      );
-  }
 
 
 
@@ -196,4 +176,8 @@ export class InicioComponent implements OnInit {
       );
 
   }
+
+
+
+
 }

@@ -13,6 +13,7 @@ import { ClimateComponent } from './componentes/climate/climate.component';
 import { DiameterComponent } from './componentes/diameter/diameter.component';
 import { GravityComponent } from './componentes/gravity/gravity.component';
 import { TerrainComponent } from './componentes/terrain/terrain.component';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TerrainComponent } from './componentes/terrain/terrain.component';
     ClimateComponent,
     DiameterComponent,
     GravityComponent,
-    TerrainComponent
+    TerrainComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,

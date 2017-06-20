@@ -1,0 +1,17 @@
+<h3>{{usuario.id}} {{usuario.nombre}}</h3>
+<div class="animated rollIn" *ngIf="!usuario.editar">
+  <h3>{{usuario.nombre}}</h3>
+  <button class="btn btn-warning" (click)="usuario.editar = !usuario.editar"> Editar Usuario</button>
+</div>
+<div class="animated rollIn" *ngIf="usuario.editar">
+  <h4>Actualizar</h4>
+
+
+  <div class="form-group">
+    <label class="col-form-label">Nombre Usuario</label>
+    <input class="form-control" placeholder = "Ingrese nuevo nombre"  type="text" #usuarioNombre>
+  </div>
+  <button class="btn btn-primary" (click)="actualizarUsuario(usuario,usuarioNombre.value)">Actualizar Usuario</button>
+  <button class="btn btn-danger" (click)="eliminarUsuario(usuario)">Eliminar Usuario</button>
+  <button class="btn btn-secondary" (click)="usuario.editar = !usuario.editar">Cancelar</button>
+</div>

@@ -35,17 +35,19 @@
 
     <div class="col-sm-3"  *ngFor="let usuario of usuarios;let indice = index;">
 
-      <h3>{{usuario.nombre}}</h3>
+      <app-usuario [usuario]="usuario"></app-usuario>
 
-      <button class="btn btn-danger" (click)="eliminarUsuario(usuario,indice)"> Eliminar usuario</button>
 
+
+
+      </div>
     </div>
   </div>
 
 
 
 
-
+<!--
   <hr>
 
   <h2>Planetas</h2>
@@ -59,6 +61,7 @@
 
     </div>
   </div>
+  -->
 <!--
 <div class="container">
   <h1>Bienvenido</h1>
