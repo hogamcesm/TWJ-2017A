@@ -5,65 +5,61 @@
   <h2>Usuarios</h2>
 
   <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
 
-  <div class="col-sm-6" >
-
-    <div class="form-group" >
-
-      <pre>
-        {{ nuevoUsuario | json }}
-      </pre>
-
-      <label  class="col-form label">Nombre Usuario:</label>
-        <input  class="form-control"
-                placeholder="Ingrese nuevo nombre"
-                [(ngModel)]="nuevoUsuario.nombre" type="text"
-                >
-
+        <label class="col-form-label">Nombre Usuario:
+        </label>
+        <input class="form-control"
+               placeholder="Ingrese nuevo Nombre"
+               [(ngModel)]="nuevoUsuario.nombre" type="text">
       </div>
 
-        <button class="btn btn-outline-success" (click)="crearUsuario()" >Crear usuario</button>
+      <button class="btn btn-success"
+              (click)="crearUsuario()">
+        Crear usuario
+      </button>
 
     </div>
   </div>
-  <hr>
 
   <h3>Usuarios:</h3>
 
-  <div class="row" >
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let usuario of usuarios;let indice = index;">
+      <div class="margin-usuarios">
 
+        <app-usuario
+          [usuarioLocal]="usuario"
+          (usuarioborrado)="eliminarUsuario($event)"
 
-    <div class="col-sm-3"  *ngFor="let usuario of usuarios;let indice = index;">
-
-      <app-usuario [usuario]="usuario"
-      (usuarioBorrado)="elimimarUsuario($event)"
-      ></app-usuario>
-
+        ></app-usuario>
 
 
 
       </div>
-    </div>
-  </div>
-
-
-
-
-<!--
-  <hr>
-
-  <h2>Planetas</h2>
-  <button class="btn btn-outline-success" (click)="cargarPlanetas()">Cargar Planetas</button>
-
-  <div class="row">
-    <div class="col-md-4"
-         *ngFor="let planeta of planetas;let i = index;">
-
-      <app-planeta-star-wars [planeta]="planeta"></app-planeta-star-wars>
 
     </div>
   </div>
-  -->
+
+
+
+
+  <!--
+    <hr>
+
+    <h2>Planetas</h2>
+    <button class="btn btn-outline-success" (click)="cargarPlanetas()">Cargar Planetas</button>
+
+    <div class="row">
+      <div class="col-md-4"
+           *ngFor="let planeta of planetas;let i = index;">
+
+        <app-planeta-star-wars [planeta]="planeta"></app-planeta-star-wars>
+
+      </div>
+    </div>
+    -->
 <!--
 <div class="container">
   <h1>Bienvenido</h1>

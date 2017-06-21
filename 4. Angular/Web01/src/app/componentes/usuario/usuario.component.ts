@@ -1,7 +1,6 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {UsuarioClass} from '../../Classes/UsuarioClass';
-import {Http} from '@angular/http';
-import EventEmitter = NodeJS.EventEmitter;
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {UsuarioClass} from "../../Classes/UsuarioClass";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-usuario',
@@ -9,67 +8,71 @@ import EventEmitter = NodeJS.EventEmitter;
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent implements OnInit {
-@Input() usuario: UsuarioClass;
-@Output() usuarioBorrado = new EventEmitter();
-  constructor(private _http: Http) { }
 
+  @Input() usuarioLocal:UsuarioClass;
+  @Output() usuarioborrado = new EventEmitter(); //emisor de eventos
+
+
+  constructor(private _http:Http) { }
   ngOnInit() {
-
-    console.log(this.usuario);
+    console.log(this.usuarioLocal);
   }
-  actualizarUsuario(usuario:UsuarioClass, nombre:string){
-    let actualizacion = {
-      nombre: usuario.nombre
-    };
-    this._http.put(
-      "http://localhost:1337/Usuario/"+usuario.id, actualizacion)
-      .map((res)=>{
-        return res.json();
-      }).subscribe(
-      res=>{
-        //el servidor dice q se actualizo
-        console.log("El usuario de actualizo",res);
 
-        //let indice = this.usuarios.indexOf(usuario);
-        //this.usuarios[indice].nombre = nombre;
-        //this.usuarios[indice].editar = !this.usuarios[indice].editar;
-      },
-      err=>{
-        //hubo algun problema
-        console.log("Hubo un error");
-      }
-    )
-  }
-eliminarUsuario(usuario: UsuarioClass, indice: number) {
 
-    // console.log('Indice:', this.usuarios.indexOf(usuario));
+  //este metodo se ejecuta con un evento del componente hijo
+  //(usuarioBorrado)="eliminarUsuario($event)"
+  eliminarUsuario(usuario:UsuarioClass,indice:number){
 
-    console.log('Indice con index: ', usuario.id);
-
-    this._http.delete(`http://localhost:1337/Usuario/${usuario.id}`)
+    this._http.delete("http://localhost:1337/Usuario/"+usuario.id)
       .subscribe(
-        respuesta => {
+        respuesta=>{
 
-          this.usuarioBorrado.emit({id:usuario.id});
-          console.log('Indice con index: ', usuario.id);
 
-          //  const rjson: UsuarioClass[] = respuesta.json();
-          //  this.usuarios = rjson.slice(usuario.id);
-          // this.usuarios = this.usuarios.slice(usuario.id);
-
-          let usuarioBorrado;
-          usuarioBorrado = respuesta.json();
-          //this.usuarios = this.usuarios.filter(value => usuarioBorrado.id != value.id);
+          this.usuarioborrado.emit(usuario);
+          //this.usuarios.splice(this.usuarios.indexOf(usuario),1)
 
 
         },
-        error => {
-          console.log('Error', error);
+        error=>{
+          console.log("Error",error);
         }
-      );
+      )
+
   }
+  actualizarUsuario(usuario:UsuarioClass,nombre:string){
+
+    let actualizacion = {
+      nombre:nombre
+    };
+
+    this._http.put(
+      "http://localhost:1337/Usuario/"+usuario.id,actualizacion)
+      .map(
+        (res)=>{
+          return res.json();
+        })
+      // snippet -> template de codigo para reutilizarlo
+      .subscribe(
+        res=>{
+          //el servidor nos dice que se actualizo
+          console.log("El usuario se actualizo",res);
+          this.usuarioLocal.nombre = nombre
+          this.usuarioLocal.editar = !this.usuarioLocal.editar;
+
+          //let indice = this.usuarios.indexOf(usuario);
+
+          //this.usuarios[indice].nombre = nombre;
+          //this.usuarios[indice].editar = !this.usuarios[indice].editar;
+
+        },
+        err=>{
+          //hubo algun problema (Red servidor)
+          console.log("Hubo un error",err);
+        }
 
 
+      );
 
+  }
 
 }

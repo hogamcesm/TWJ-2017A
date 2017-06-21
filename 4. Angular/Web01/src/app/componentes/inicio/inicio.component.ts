@@ -142,44 +142,37 @@ export class InicioComponent implements OnInit {
   }
 
 
+  crearUsuario() {
+    console.log("Entro a crear Usuario");
+    /*
+     let usuario = {
+     nombre:this.nuevoUsuario.nombre
+     };
+     */
 
-
-
-  crearUsuario(){
-    console.log('Entro a crear Usuario');
-
-  /*  let usuario = {
-      nombre:this.nuevoUsuario.nombre
-    };
-    */
-
-
-    this._http.post('http://localhost:1337/Usuario/', this.nuevoUsuario)
+    this._http
+      .post("http://localhost:1337/Usuario/",this.nuevoUsuario)
       .subscribe(
-        respuesta => {
-          // const respuestaJSON = respuesta.json();
-          // console.log('Resouesta JSoN', respuestaJSON);
-          //this.usuarios.push(this.nuevoUsuario);
-
-          //this.usuarios.splice(respuesta.json());
-          let usuarioAgregado;
-          usuarioAgregado = respuesta.json();
-
-          this.usuarios.push(usuarioAgregado);
-          this.nuevoUsuario = {};
-
-
-    },
-    error => {
-          console.log('Error', error);
-    }
+        respuesta=>{
+          let respuestaJson = respuesta.json()
+          this.usuarios.push(respuestaJson);
+          this.nuevoUsuario = new UsuarioClass();
+          console.log('respuestaJson: ',respuestaJson);
+        },
+        error=>{
+          console.log("Error",error);
+        }
       );
 
   }
 
   eliminarUsuario(usuario:UsuarioClass){
+
     let indice = this.usuarios.indexOf(usuario);
-    this.usuarios.slice(1, usuario.id);
+    //eliminando del arreglo
+
+    this.usuarios.splice(indice, 1 );
+
   }
 
 

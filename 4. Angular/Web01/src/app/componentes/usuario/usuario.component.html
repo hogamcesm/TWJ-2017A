@@ -1,17 +1,47 @@
-<h3>{{usuario.id}} {{usuario.nombre}}</h3>
-<div class="animated rollIn" *ngIf="!usuario.editar">
-  <h3>{{usuario.nombre}}</h3>
-  <button class="btn btn-warning" (click)="usuario.editar = !usuario.editar"> Editar Usuario</button>
+<h3>{{usuarioLocal.id}} {{usuarioLocal.nombre}}</h3>
+
+
+
+<div class="animated rollIn" *ngIf="!usuarioLocal.editar">
+  <h3>{{usuarioLocal.nombre}}</h3>
+
+  <button class="btn btn-warning"
+          (click)="usuarioLocal.editar = !usuarioLocal.editar"> Editar usuarioLocal</button>
 </div>
-<div class="animated rollIn" *ngIf="usuario.editar">
+
+<div class="animated bounceIn" *ngIf="usuarioLocal.editar">
   <h4>Actualizar</h4>
 
 
   <div class="form-group">
-    <label class="col-form-label">Nombre Usuario</label>
-    <input class="form-control" placeholder = "Ingrese nuevo nombre"  type="text" #usuarioNombre>
+
+    <!--
+<div class="form-group">
+<label class="col-form-label">Nombre usuarioLocal:
+</label>
+<input class="form-control"
+ placeholder="Ingrese nuevo Nombre"
+ [(ngModel)]="usuarioLocal.nombre" type="text">
+</div>
+-->
+
+    <label class="col-form-label">Nombre usuarioLocal:
+    </label>
+    <input class="form-control"
+           placeholder="Ingrese nuevo Nombre"
+           type="text"
+           #usuarioLocalNombre
+    >
   </div>
-  <button class="btn btn-primary" (click)="actualizarUsuario(usuario,usuarioNombre.value)">Actualizar Usuario</button>
-  <button class="btn btn-danger" (click)="eliminarUsuario(usuario)">Eliminar Usuario</button>
-  <button class="btn btn-secondary" (click)="usuario.editar = !usuario.editar">Cancelar</button>
+
+  <button class="btn btn-primary"
+          (click)="actualizarUsuario(
+                  usuarioLocal,usuarioLocalNombre.value)"> Actualizar usuarioLocal</button>
+
+
+
+  <button class="btn btn-danger" (click)="eliminarUsuario(usuarioLocal,indice)"> Eliminar usuarioLocal</button>
+
+  <button class="btn btn-secondary"
+          (click)="usuarioLocal.editar = !usuarioLocal.editar"> Cancelar usuarioLocal</button>
 </div>

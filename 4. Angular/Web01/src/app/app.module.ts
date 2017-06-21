@@ -14,6 +14,11 @@ import { DiameterComponent } from './componentes/diameter/diameter.component';
 import { GravityComponent } from './componentes/gravity/gravity.component';
 import { TerrainComponent } from './componentes/terrain/terrain.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { Pagina2Component } from './componentes/pagina2/pagina2.component';
+import {ModuloDeRutas} from './routes';
+import { Pagina21Component } from './componentes/pagina21/pagina21.component';
+import { Pagina22Component } from './componentes/pagina22/pagina22.component';
+import { Pagina23Component } from './componentes/pagina23/pagina23.component';
 
 @NgModule({
   declarations: [
@@ -26,16 +31,21 @@ import { UsuarioComponent } from './componentes/usuario/usuario.component';
     DiameterComponent,
     GravityComponent,
     TerrainComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    Pagina2Component,
+    Pagina21Component,
+    Pagina22Component,
+    Pagina23Component
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ModuloDeRutas
   ],
   providers: [
     //http
   ],
-  bootstrap: [InicioComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
