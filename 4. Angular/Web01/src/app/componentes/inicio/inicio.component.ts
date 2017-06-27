@@ -142,15 +142,17 @@ export class InicioComponent implements OnInit {
   }
 
 
-  crearUsuario() {
+  crearUsuario(UsuarioFormulario) {
     console.log("Entro a crear Usuario");
+    console.log(this.nuevoUsuario);
+    console.log(UsuarioFormulario);
     /*
      let usuario = {
      nombre:this.nuevoUsuario.nombre
      };
      */
 
-    this._http
+    /*this._http
       .post("http://localhost:1337/Usuario/",this.nuevoUsuario)
       .subscribe(
         respuesta=>{
@@ -163,6 +165,7 @@ export class InicioComponent implements OnInit {
           console.log("Error",error);
         }
       );
+      */
 
   }
 
