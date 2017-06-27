@@ -1,19 +1,19 @@
 /**
- * Usuario.js
+ * Raza.js
  *
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
 module.exports = {
-  connection: 'localDiskDb',//conexionPostgresqlDocker
+
   attributes: {
-    nombre:{
-      type: 'string'
+    nombre: {
+      type:"string"
     },
-    duenosMascotas: {
-      collection: "UsuarioMascota",
-      via: "idUsuario"
+    listaMascotasDeRaza: {
+      collection: "Mascota", //Es el nombre del modelo a relacionar
+      via: "idRaza" //Es el nombre del FOREIGN KEY
     }
   }
 };
