@@ -23,25 +23,54 @@
                minlength="3"
                maxlength="15"
                placeholder="Ingrese nuevo Nombre" name="nombre"
-                type="text"
-                pattern="[adsas]"
+               type="text"
+               pattern="[A-Za-z]{3}"
                [(ngModel)]="nuevoUsuario.nombre"
         #nombre="ngModel"
         #nombreTAG>
+        <label class="col-form-label">Correo:
+        </label>
+        <input class="form-control"
+               required
+
+               placeholder="Ingrese correo" name="correo"
+               type="email"
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+               [(ngModel)]="nuevoUsuario.email"
+               #email="ngModel"
+               #emailTAG>
         <br>
-        <div *ngIf="nombre.errors?.minlength&&nombre.touched==true " class="alert alert-warning animated bounceIn" role="alert">
-          <strong>Warning!</strong> Better check yourself, you're not looking too good.
+
+        <div *ngIf="nombre.errors?.minlength&&nombre.touched==true" class="alert alert-warning animated bounceIn" role="alert">
+          <strong>¡Cuidado!</strong> Debes de llenar el campo desde 3 hasta 15 caracteres.
         </div>
 
-        <div *ngIf="nombre.errors?.required&&nombre.touched==true" class="alert alert-warning animated bounceIn" role="alert">
-          <strong>Warning!</strong> Este campo es requerido!.
+        <div
+          *ngIf="nombre.errors?.required&&nombre.touched==true"
+
+          class="alert alert-danger animated bounceIn" role="alert">
+          <strong>¡Peligro!</strong> Este campo es requerido.
+        </div>
+
+        <div
+          *ngIf="email.errors?.required&&email.touched==true"
+
+          class="alert alert-danger animated bounceIn" role="alert">
+          <strong>¡Peligro!</strong> Este campo es requerido.
         </div>
 
 <pre>
+  <strong>Nombre</strong>
   {{nombre.errors | json}}
   {{nombre.touched}}
   {{nombre.dirty}}
   {{nombre.pristine}}
+  <strong>Correo</strong>
+  {{email.errors | json}}
+  {{email.touched}}
+  {{email.dirty}}
+  {{email.pristine}}
+
 </pre>
       </div>
 
